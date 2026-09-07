@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عيد ميلاد اسراء</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Tajawal:wght@400;500;700;800&display=swap');
+
+:root{
+  --bg-deep:#153228;
+  --bg-deep-2:#1e4235;
+  --cream:#FBF4E6;
+  --citrus:#F2A93B;
+  --berry:#E85D75;
+  --leaf:#8FB56B;
+  --text-dark:#182620;
+  --ink:#0E1E17;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Tajawal',sans-serif;
+  background:var(--cream);
+  color:var(--text-dark);
+  overflow-x:hidden;
+}
+button, input{font-family:inherit;}
+:focus-visible{outline:3px solid var(--berry);outline-offset:2px;}
+
+/* ---------- LOCK SCREEN ---------- */
+#lock{
+  position:fixed;inset:0;
+  background:radial-gradient(circle at 30% 20%, var(--bg-deep-2), var(--bg-deep) 70%);
+  display:flex;align-items:center;justify-content:center;
+  z-index:100;
+  padding:24px;
+}
+.lock-card{
+  background:var(--cream);
+  border-radius:28px 28px 60px 28px;
+  padding:48px 40px;
+  max-width:400px;
+  width:100%;
+  text-align:center;
+  position:relative;
+  box-shadow:0 30px 60px rgba(0,0,0,0.35);
+}
+.lock-leaf{
+  position:absolute;
+  top:-34px;right:-18px;
+  width:76px;height:76px;
+  transform-origin:50% 90%;
+  animation:sway 3.6s ease-in-out infinite;
+}
+@keyframes sway{
+  0%,100%{transform:rotate(8deg);}
+  50%{transform:rotate(18deg);}
+}
+.lock-card h1{
+  font-family:'Lalezar',sans-serif;
+  font-size:2.1rem;
+  color:var(--bg-deep);
+  margin:0 0 6px;
+  line-height:1.3;
+}
+.lock-card p{
+  margin:0 0 22px;
+  color:#5b6d63;
+  font-size:0.95rem;
+}
+.lock-countdown{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:26px;
+}
+.lock-countdown .unit{
+  background:var(--bg-deep);
+  color:var(--cream);
+  border-radius:12px 12px 20px 12px;
+  padding:10px 6px;
+  flex:1;
+  min-width:0;
+}
+.lock-countdown .num{
+  font-family:'Lalezar',sans-serif;
+  font-size:1.6rem;
+  color:var(--citrus);
+  display:block;
+  line-height:1;
+}
+.lock-countdown .lbl{font-size:.68rem;color:#cfe0d3;margin-top:4px;display:block;}
+#cd-secs{animation:tickPulse 1s ease-in-out infinite;}
+@keyframes tickPulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.12);}
+}
+#lockDoneMsg{
+  display:none;
+  font-family:'Lalezar',sans-serif;
+  font-size:1.15rem;
+  color:var(--berry);
+  margin-bottom:20px;
+}
+.mascot-wrap{
+  margin:0 auto 18px;
+  width:88px;
+  height:88px;
+  animation:mascotBob 3s ease-in-out infinite;
+}
+@keyframes mascotBob{
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-6px) rotate(-3deg);}
+}
+.mascot-wrap.sad{animation:mascotShake .5s ease;}
+.mascot-wrap.happy{animation:mascotJump .5s ease;}
+@keyframes mascotShake{
+  20%,60%{transform:translateX(-6px) rotate(-6deg);}
+  40%,80%{transform:translateX(6px) rotate(6deg);}
+  100%{transform:translateX(0) rotate(0deg);}
+}
+@keyframes mascotJump{
+  0%{transform:translateY(0) scale(1);}
+  40%{transform:translateY(-16px) scale(1.08);}
+  100%{transform:translateY(0) scale(1);}
+}
+.mascot .eye{animation:blink 4.2s ease-in-out infinite;transform-origin:center;}
+@keyframes blink{
+  0%,94%,100%{transform:scaleY(1);}
+  97%{transform:scaleY(.1);}
+}
+.eyes-sad,.mouth-sad,.eyes-happy,.mouth-happy{display:none;}
+.mascot-wrap.sad .eyes-normal,.mascot-wrap.sad .mouth-normal,
+.mascot-wrap.happy .eyes-normal,.mascot-wrap.happy .mouth-normal{display:none;}
+.mascot-wrap.sad .eyes-sad,.mascot-wrap.sad .mouth-sad{display:block;}
+.mascot-wrap.happy .eyes-happy,.mascot-wrap.happy .mouth-happy{display:block;}
+
+#pw{
+  width:100%;
+  padding:14px 16px;
+  border-radius:14px;
+  border:2px solid #d8cfb8;
+  font-size:1.1rem;
+  text-align:center;
+  letter-spacing:4px;
+  margin-bottom:14px;
+  background:#fff;
+  color:var(--text-dark);
+}
+#unlockBtn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:var(--berry);
+  color:#fff;
+  font-size:1.05rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .15s ease, background .2s ease;
+}
+#unlockBtn:hover{background:#d94d67;transform:translateY(-1px);}
+#lockMsg{
+  min-height:20px;
+  color:var(--berry);
+  font-size:0.88rem;
+  margin-top:10px;
+  font-weight:700;
+}
+.shake{animation:shake .4s;}
+@keyframes shake{
+  10%,90%{transform:translateX(-2px);}
+  20%,80%{transform:translateX(4px);}
+  30%,50%,70%{transform:translateX(-8px);}
+  40%,60%{transform:translateX(8px);}
+}
+
+.confetti-btn{
+  position:fixed;
+  bottom:22px;
+  left:22px;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:var(--berry);
+  color:#fff;
+  border:none;
+  font-size:1.5rem;
+  box-shadow:0 8px 20px rgba(0,0,0,.28);
+  cursor:pointer;
+  z-index:150;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .15s ease;
+}
+.confetti-btn:hover{transform:scale(1.08);}
+.confetti-btn:active{transform:scale(.94);}
+
+/* ---------- MAIN SITE ---------- */
+#site{display:none;}
+#site.show{display:block;}
+
+.deco-row{display:flex;align-items:center;gap:10px;justify-content:center;margin:8px 0;}
+.deco-row svg{width:20px;height:20px;}
+
+/* HERO */
+.hero{
+  position:relative;
+  background:radial-gradient(ellipse at 75% 15%, var(--bg-deep-2), var(--bg-deep) 65%);
+  color:var(--cream);
+  padding:70px 8vw 90px;
+  overflow:hidden;
+  min-height:70vh;
+  display:flex;
+  align-items:center;
+}
+.hero-inner{
+  display:flex;
+  gap:40px;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  z-index:2;
+  position:relative;
+}
+.hero-text{flex:1;min-width:280px;}
+.hero-eyebrow{
+  color:var(--citrus);
+  font-weight:700;
+  font-size:1.05rem;
+  margin-bottom:6px;
+  opacity:0;
+  animation:heroReveal .7s ease forwards;
+}
+.hero h1{
+  font-family:'Lalezar',sans-serif;
+  font-size:clamp(2.4rem,6vw,4.2rem);
+  line-height:1.15;
+  margin:0 0 14px;
+  opacity:0;
+  animation:heroReveal .7s ease forwards .15s;
+}
+.hero h1 span{color:var(--citrus);}
+.hero p.lead{
+  font-size:1.15rem;
+  color:#dfe9df;
+  max-width:440px;
+  line-height:1.8;
+  opacity:0;
+  animation:heroReveal .7s ease forwards .3s;
+}
+@keyframes heroReveal{
+  from{opacity:0;transform:translateY(16px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.hero-art{
+  flex:0 0 300px;
+  position:relative;
+  height:300px;
+  opacity:0;
+  animation:heroReveal .7s ease forwards .45s;
+}
+.hero-art svg{position:absolute;filter:drop-shadow(0 12px 18px rgba(0,0,0,.3));}
+.orange{width:170px;top:10px;right:40px;transform:rotate(-8deg);animation:floatY 4s ease-in-out infinite;}
+.leaf1{width:90px;top:0;left:10px;transform:rotate(20deg);animation:floatY 3.4s ease-in-out infinite .3s;}
+.avocado{width:130px;bottom:0;right:0;transform:rotate(6deg);animation:floatY 4.6s ease-in-out infinite .5s;}
+.cherry{width:70px;bottom:10px;left:40px;transform:rotate(-12deg);animation:floatY 3.2s ease-in-out infinite .2s;}
+@keyframes floatY{
+  0%,100%{translate:0 0;}
+  50%{translate:0 -10px;}
+}
+
+.wave{display:block;width:100%;height:60px;margin-top:-2px;}
+
+.bg-particle{
+  position:absolute;
+  bottom:-40px;
+  font-size:1.4rem;
+  opacity:0;
+  z-index:1;
+  animation:drift 9s linear infinite;
+  pointer-events:none;
+}
+@keyframes drift{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  12%{opacity:.4;}
+  85%{opacity:.4;}
+  100%{transform:translateY(-420px) rotate(25deg);opacity:0;}
+}
+
+/* CAKE */
+.cake-section{
+  background:var(--cream);
+  padding:80px 8vw 90px;
+  text-align:center;
+}
+.cake-section h2{
+  font-family:'Lalezar',sans-serif;
+  font-size:2rem;
+  color:var(--bg-deep);
+  margin:0 0 8px;
+}
+.cake-section .sub{color:#5b6d63;margin-bottom:8px;font-size:1rem;}
+.cake-wrap{max-width:320px;margin:30px auto 0;}
+.cake{width:100%;height:auto;overflow:visible;}
+.candle{cursor:pointer;}
+.candle:focus-visible{outline:3px solid var(--berry);outline-offset:4px;}
+.flame{
+  animation:flicker .6s ease-in-out infinite;
+  transform-origin:50% 100%;
+  transition:transform .35s ease, opacity .35s ease;
+}
+@keyframes flicker{
+  0%,100%{transform:scaleY(1) rotate(0deg);}
+  25%{transform:scaleY(1.1) rotate(-4deg);}
+  50%{transform:scaleY(.92) rotate(3deg);}
+  75%{transform:scaleY(1.06) rotate(-2deg);}
+}
+.smoke{opacity:0;}
+.candle.blown .flame{animation:none;transform:scaleY(0);opacity:0;}
+.candle.blown .smoke{animation:smokeRise 1.1s ease-out forwards;}
+@keyframes smokeRise{
+  0%{opacity:.55;transform:translateY(0) scale(1);}
+  100%{opacity:0;transform:translateY(-26px) scale(1.6);}
+}
+#cakeHint{
+  margin-top:18px;
+  font-size:.9rem;
+  color:#5b6d63;
+  min-height:20px;
+}
+#cakeMsg{
+  display:none;
+  margin-top:6px;
+  font-family:'Lalezar',sans-serif;
+  font-size:1.3rem;
+  color:var(--berry);
+}
+
+.scroll-track{
+  position:fixed;
+  top:0;right:0;left:0;
+  height:5px;
+  background:rgba(0,0,0,.1);
+  z-index:150;
+  direction:rtl;
+}
+.scroll-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--berry),var(--citrus));
+}
+.scroll-fruit{
+  position:fixed;
+  top:-11px;
+  right:0%;
+  width:24px;
+  height:24px;
+  transform:translateX(50%);
+  z-index:151;
+  pointer-events:none;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));
+}
+
+/* CARD */
+.card-section{
+  background:var(--bg-deep);
+  color:var(--cream);
+  padding:70px 8vw 80px;
+  text-align:center;
+}
+.card-section h2{
+  font-family:'Lalezar',sans-serif;
+  font-size:2rem;
+  margin:0 0 8px;
+}
+.card-section p{color:#cfe0d3;margin:0 0 26px;}
+#makeCardBtn{
+  background:var(--citrus);
+  color:var(--ink);
+  border:none;
+  padding:14px 28px;
+  border-radius:100px;
+  font-weight:700;
+  font-size:1rem;
+  cursor:pointer;
+  transition:transform .15s ease, background .2s ease;
+}
+#makeCardBtn:hover{background:#e0982e;transform:translateY(-1px);}
+#cardPreviewWrap{
+  display:none;
+  margin-top:30px;
+}
+#cardPreview{
+  max-width:280px;
+  width:100%;
+  border-radius:16px;
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+#downloadCardLink{
+  display:inline-block;
+  margin-top:18px;
+  background:var(--leaf);
+  color:#fff;
+  text-decoration:none;
+  padding:12px 26px;
+  border-radius:100px;
+  font-weight:700;
+  transition:transform .15s ease, background .2s ease;
+}
+#downloadCardLink:hover{background:#7ba158;transform:translateY(-1px);}
+
+/* MESSAGE */
+.message-section{
+  background:var(--bg-deep-2);
+  color:var(--cream);
+  padding:70px 8vw;
+  text-align:center;
+}
+.message-card{
+  max-width:640px;
+  margin:0 auto;
+  position:relative;
+}
+.message-card svg.quote{width:34px;height:34px;opacity:.6;margin-bottom:16px;}
+.message-card p{
+  font-size:1.3rem;
+  line-height:2;
+  font-weight:500;
+}
+.message-card .sign{
+  margin-top:24px;
+  font-family:'Lalezar',sans-serif;
+  color:var(--citrus);
+  font-size:1.3rem;
+}
+
+/* WISH WALL */
+.wish-section{
+  background:var(--bg-deep-2);
+  color:var(--cream);
+  padding:70px 8vw 80px;
+  text-align:center;
+}
+.wish-head h2{
+  font-family:'Lalezar',sans-serif;
+  font-size:2rem;
+  margin:0 0 8px;
+}
+.wish-head p{color:#cfe0d3;margin:0 0 26px;}
+.wish-form{
+  display:flex;
+  gap:10px;
+  max-width:480px;
+  margin:0 auto 8px;
+  flex-wrap:wrap;
+}
+#wishInput{
+  flex:1;
+  min-width:200px;
+  padding:13px 16px;
+  border-radius:12px;
+  border:none;
+  font-size:1rem;
+  background:var(--cream);
+  color:var(--text-dark);
+}
+#addWishBtn{
+  background:var(--citrus);
+  color:var(--ink);
+  border:none;
+  padding:13px 22px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .15s ease, background .2s ease;
+}
+#addWishBtn:hover{background:#e0982e;transform:translateY(-1px);}
+#wishStatus{min-height:18px;font-size:.85rem;color:#cfe0d3;margin-bottom:30px;}
+.wish-wall{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:20px;
+  max-width:1000px;
+  margin:0 auto;
+}
+.wish-note{
+  position:relative;
+  padding:20px 18px 16px;
+  border-radius:4px 16px 4px 16px;
+  text-align:right;
+  font-size:.98rem;
+  line-height:1.7;
+  color:var(--ink);
+  box-shadow:0 10px 18px rgba(0,0,0,.18);
+  animation:popIn .4s ease both;
+}
+.wish-note:nth-child(3n){background:#FCE7CF;transform:rotate(-1.6deg);}
+.wish-note:nth-child(3n+1){background:#FBD7DE;transform:rotate(1.4deg);}
+.wish-note:nth-child(3n+2){background:#E4EFD8;transform:rotate(-.8deg);}
+.wish-remove{
+  position:absolute;
+  top:6px;left:8px;
+  width:22px;height:22px;
+  border-radius:50%;
+  border:none;
+  background:rgba(0,0,0,.15);
+  color:#3a3a3a;
+  font-size:.8rem;
+  line-height:1;
+  cursor:pointer;
+}
+.wish-remove:hover{background:var(--berry);color:#fff;}
+#wishEmpty{color:#cfe0d3;}
+
+/* GALLERY */
+.gallery-section{
+  background:var(--cream);
+  padding:70px 8vw 90px;
+}
+.gallery-head{
+  text-align:center;
+  max-width:600px;
+  margin:0 auto 34px;
+}
+.gallery-head h2{
+  font-family:'Lalezar',sans-serif;
+  font-size:2rem;
+  color:var(--bg-deep);
+  margin:0 0 8px;
+}
+.gallery-head p{color:#5b6d63;margin:0 0 22px;}
+#addPhotoBtn{
+  background:var(--leaf);
+  color:#fff;
+  border:none;
+  padding:13px 26px;
+  border-radius:100px;
+  font-weight:700;
+  font-size:1rem;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:transform .15s ease, background .2s ease;
+}
+#addPhotoBtn:hover{background:#7ba158;transform:translateY(-1px);}
+#fileInput{display:none;}
+#uploadStatus{
+  margin-top:10px;
+  font-size:.9rem;
+  color:#5b6d63;
+  min-height:18px;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:22px;
+  max-width:1000px;
+  margin:0 auto;
+}
+.photo-card{
+  background:#fff;
+  padding:10px 10px 16px;
+  border-radius:4px;
+  box-shadow:0 10px 20px rgba(20,40,30,.12);
+  position:relative;
+  animation:popIn .4s ease both;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.photo-card:nth-child(odd){transform:rotate(-2.2deg);}
+.photo-card:nth-child(even){transform:rotate(2deg);}
+.photo-card:hover{
+  transform:rotate(0deg) translateY(-6px) scale(1.03);
+  box-shadow:0 16px 28px rgba(20,40,30,.22);
+}
+@keyframes popIn{
+  from{opacity:0;transform:scale(.85);}
+  to{opacity:1;}
+}
+.photo-card img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+  display:block;
+  border-radius:2px;
+}
+.tape{
+  position:absolute;
+  top:-10px;left:50%;
+  transform:translateX(-50%) rotate(-3deg);
+  width:56px;height:20px;
+  background:rgba(242,169,59,.75);
+  border-radius:2px;
+}
+.remove-btn{
+  position:absolute;
+  top:6px;left:6px;
+  width:24px;height:24px;
+  border-radius:50%;
+  border:none;
+  background:rgba(20,30,25,.55);
+  color:#fff;
+  font-size:.85rem;
+  line-height:1;
+  cursor:pointer;
+}
+.remove-btn:hover{background:var(--berry);}
+.empty-state{
+  text-align:center;
+  color:#8a9a8f;
+  font-size:.95rem;
+  grid-column:1/-1;
+  padding:20px 0;
+}
+
+footer{
+  text-align:center;
+  padding:26px;
+  background:var(--bg-deep);
+  color:#cfe0d3;
+  font-size:.85rem;
+}
+
+.confetti-piece{
+  position:fixed;
+  top:50%;left:50%;
+  font-size:1.6rem;
+  pointer-events:none;
+  z-index:200;
+  animation:confettiBurst 1.1s ease-out forwards;
+}
+@keyframes confettiBurst{
+  0%{transform:translate(-50%,-50%) scale(.4) rotate(0deg);opacity:1;}
+  100%{transform:translate(var(--tx),var(--ty)) scale(1) rotate(var(--tr));opacity:0;}
+}
+
+@media (max-width:720px){
+  .hero-inner{flex-direction:column;text-align:center;}
+  .hero-text{order:1;}
+  .hero-art{order:0;flex:0 0 220px;width:100%;height:220px;margin:0 auto;}
+  .hero p.lead{margin:0 auto;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .shake,.lock-leaf,#cd-secs,.hero-eyebrow,.hero h1,.hero p.lead,.hero-art,
+  .orange,.leaf1,.avocado,.cherry,.photo-card,.flame,.smoke,.wish-note,
+  .mascot-wrap,.mascot .eye{animation:none !important;opacity:1 !important;transform:none;}
+  .bg-particle{display:none;}
+  #unlockBtn,#addPhotoBtn,.photo-card{transition:none;}
+  .confetti-piece{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lock">
+  <div class="lock-card">
+    <svg class="lock-leaf" viewBox="0 0 100 100"><path d="M50 5 C80 15 90 45 70 75 C55 95 25 90 15 65 C5 40 20 10 50 5Z" fill="#8FB56B"/><path d="M50 10 L50 85" stroke="#5f8046" stroke-width="3" fill="none"/></svg>
+    <div class="mascot-wrap" id="mascot">
+      <svg class="mascot" viewBox="0 0 120 120">
+        <path d="M60 8 Q68 -2 76 4" stroke="#5f8046" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="60" cy="62" r="48" fill="#F2A93B"/>
+        <g class="eyes-normal">
+          <circle class="eye" cx="42" cy="56" r="6" fill="#182620"/>
+          <circle class="eye" cx="78" cy="56" r="6" fill="#182620"/>
+        </g>
+        <path class="mouth-normal" d="M40 76 Q60 88 80 76" stroke="#182620" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <g class="eyes-sad">
+          <path d="M36 52 L48 60 M48 52 L36 60" stroke="#182620" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M72 52 L84 60 M84 52 L72 60" stroke="#182620" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+        <path class="mouth-sad" d="M40 84 Q60 72 80 84" stroke="#182620" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <g class="eyes-happy">
+          <path d="M36 58 Q42 48 48 58" stroke="#182620" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M72 58 Q78 48 84 58" stroke="#182620" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        </g>
+        <path class="mouth-happy" d="M38 74 Q60 96 82 74" stroke="#182620" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>عيد ميلادك يا اسراء 🎂</h1>
+    <p>باقي كام من الوقت</p>
+    <div class="lock-countdown" id="lockCountdown">
+      <div class="unit"><span class="num" id="cd-days">--</span><span class="lbl">يوم</span></div>
+      <div class="unit"><span class="num" id="cd-hours">--</span><span class="lbl">ساعة</span></div>
+      <div class="unit"><span class="num" id="cd-mins">--</span><span class="lbl">دقيقة</span></div>
+      <div class="unit"><span class="num" id="cd-secs">--</span><span class="lbl">ثانية</span></div>
+    </div>
+    <div id="lockDoneMsg">النهارده يومها! 🎉 الباسورد هو النهارده</div>
+    <input type="password" id="pw" placeholder="الباسورد" inputmode="numeric" autocomplete="off">
+    <button id="unlockBtn">دخول</button>
+    <div id="lockMsg"></div>
+  </div>
+</div>
+
+<!-- MAIN SITE -->
+<div id="site">
+  <div class="scroll-track"><div class="scroll-fill" id="scrollFill"></div></div>
+  <svg class="scroll-fruit" id="scrollFruit" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#F2A93B"/><g stroke="#e0912a" stroke-width="2" fill="none"><path d="M20 2 L20 38"/><path d="M4 10 L36 30"/><path d="M4 30 L36 10"/></g></svg>
+
+  <button class="confetti-btn" id="confettiBtn" aria-label="نزّل كونفيتي">🎉</button>
+
+
+  <section class="hero">
+    <span class="bg-particle" style="right:8%;animation-delay:0s;">🍊</span>
+    <span class="bg-particle" style="right:22%;animation-delay:2s;font-size:1rem;">🍃</span>
+    <span class="bg-particle" style="right:38%;animation-delay:4.5s;">🍒</span>
+    <span class="bg-particle" style="right:55%;animation-delay:1.2s;font-size:1.1rem;">🍋</span>
+    <span class="bg-particle" style="right:70%;animation-delay:3.4s;">🥑</span>
+    <span class="bg-particle" style="right:85%;animation-delay:6s;font-size:1rem;">🍃</span>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow">النهارده يوم اسراء هاني</div>
+        <h1>كل سنة و انت <span>طيبة</span> يا ضكتوووره</h1>
+        <p class="lead">اللي بتحسب لكل الناس كالوريهم وبتحرمهم من السكر، النهارده يوم الفرريي بتاعها ... يوم هنحتفل بيها هي و بس</p>
+      </div>
+      <div class="hero-art">
+        <svg class="orange" viewBox="0 0 200 200"><circle cx="100" cy="100" r="95" fill="#F2A93B"/><g stroke="#e0912a" stroke-width="3" fill="none"><path d="M100 5 L100 195"/><path d="M20 40 L180 160"/><path d="M20 160 L180 40"/><path d="M5 100 L195 100"/></g><circle cx="100" cy="100" r="95" fill="none" stroke="#c97c1f" stroke-width="6"/></svg>
+        <svg class="leaf1" viewBox="0 0 100 100"><path d="M50 5 C80 15 90 45 70 75 C55 95 25 90 15 65 C5 40 20 10 50 5Z" fill="#8FB56B"/></svg>
+        <svg class="avocado" viewBox="0 0 120 150"><ellipse cx="60" cy="80" rx="55" ry="65" fill="#6f9a4a"/><ellipse cx="60" cy="85" rx="42" ry="52" fill="#d9e6b8"/><circle cx="60" cy="95" r="22" fill="#6b4226"/></svg>
+        <svg class="cherry" viewBox="0 0 100 100"><path d="M40 20 Q50 0 65 10" stroke="#5f8046" stroke-width="4" fill="none"/><circle cx="35" cy="55" r="24" fill="#c9384a"/><circle cx="65" cy="45" r="20" fill="#e0455a"/></svg>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 30 C 360 60 1080 0 1440 30 L1440 60 L0 60 Z" fill="#FBF4E6"/></svg>
+  </section>
+
+  <section class="cake-section">
+    <h2>طفي الشمعتين .. هووووف</h2>
+    <div class="sub">وقولي أمنيتك عليها</div>
+    <div class="cake-wrap">
+      <svg class="cake" viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="120" cy="235" rx="95" ry="14" fill="#e4dcc4"/>
+        <rect x="45" y="165" width="150" height="60" rx="10" fill="#D9A066"/>
+        <rect x="65" y="105" width="110" height="60" rx="10" fill="#FBF4E6"/>
+        <circle cx="90" cy="105" r="10" fill="#C9384A"/>
+        <circle cx="120" cy="105" r="10" fill="#8FB56B"/>
+        <circle cx="150" cy="105" r="10" fill="#C9384A"/>
+        <g transform="translate(75,175)"><circle r="9" fill="#F2A93B"/><g stroke="#e0912a" stroke-width="1.4"><path d="M-9 0 L9 0"/><path d="M0 -9 L0 9"/></g></g>
+        <g transform="translate(120,180)"><circle r="9" fill="#8FB56B"/><circle r="9" fill="none" stroke="#fff" stroke-width="1"/></g>
+        <g transform="translate(165,175)"><circle r="9" fill="#F2A93B"/><g stroke="#e0912a" stroke-width="1.4"><path d="M-9 0 L9 0"/><path d="M0 -9 L0 9"/></g></g>
+
+        <g class="candle" id="candle1" tabindex="0" role="button" aria-label="طفي الشمعة الأولى" transform="translate(95,60)">
+          <rect x="-4" y="0" width="8" height="45" rx="2" fill="#E85D75"/>
+          <g class="flame" transform="translate(0,-4)">
+            <path d="M0 -16 C7 -8 7 2 0 6 C-7 2 -7 -8 0 -16Z" fill="#F2A93B"/>
+          </g>
+          <circle class="smoke" cx="0" cy="-14" r="4" fill="#bbb"/>
+        </g>
+
+        <g class="candle" id="candle2" tabindex="0" role="button" aria-label="طفي الشمعة التانية" transform="translate(145,60)">
+          <rect x="-4" y="0" width="8" height="45" rx="2" fill="#8FB56B"/>
+          <g class="flame" transform="translate(0,-4)">
+            <path d="M0 -16 C7 -8 7 2 0 6 C-7 2 -7 -8 0 -16Z" fill="#F2A93B"/>
+          </g>
+          <circle class="smoke" cx="0" cy="-14" r="4" fill="#bbb"/>
+        </g>
+      </svg>
+    </div>
+    <div id="cakeHint">دوسي على كل شمعة تطفيها</div>
+    <div id="cakeMsg">اتمنيتي؟ 🎉 يارب أمنيتك تتحقق يا اسراء</div>
+  </section>
+
+  <section class="message-section">
+    <div class="message-card">
+      <svg class="quote" viewBox="0 0 24 24" fill="#F2A93B"><path d="M7 7c-2 0-4 2-4 5s2 5 4 5 3-1 3-3-1-3-2-3c0-2 1-3 2-3V5c-2 0-3 1-3 2zm10 0c-2 0-4 2-4 5s2 5 4 5 3-1 3-3-1-3-2-3c0-2 1-3 2-3V5c-2 0-3 1-3 2z"/></svg>
+      <p>يا رب السنة الجديدة تجيبلك كل اللي في بالك، صحة وسعادة، ونجاح في شغلك اللي بتحبيه، وناس حواليكي فاكراكي زي ما انتي بتفتكري كل الناس. وعقبال ما تحرمينا من الأكل الحلو لسنين جاية 😄</p>
+      <div class="sign">من صاحبك اللي فرحان بيكي</div>
+    </div>
+  </section>
+
+  <section class="wish-section">
+    <div class="wish-head">
+      <h2>الحيطة بتاعة الأمنيات</h2>
+      <p>كل واحد يكتب كلمة أو أمنية لاسراء، وهي هتيجي تقراها كلها</p>
+      <div class="wish-form">
+        <input type="text" id="wishInput" maxlength="140" placeholder="اكتب أمنيتك هنا...">
+        <button id="addWishBtn">ضيف</button>
+      </div>
+      <div id="wishStatus"></div>
+    </div>
+    <div class="wish-wall" id="wishWall">
+      <div class="empty-state" id="wishEmpty">لسه محدش كتب حاجة... يلا ابدأ!</div>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="gallery-head">
+      <h2>ذكرياتنا معاها</h2>
+      <p>ضيفوا صورة من عندكم لتبقى ذكرى نشوفها كلنا مع بعض</p>
+      <button id="addPhotoBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        ضيفي صورة
+      </button>
+      <input type="file" id="fileInput" accept="image/*">
+      <div id="uploadStatus"></div>
+    </div>
+    <div class="gallery-grid" id="gallery">
+      <div class="empty-state" id="emptyState">لسه مفيش صور... كوني أول واحدة تضيف!</div>
+    </div>
+  </section>
+
+  <section class="card-section">
+    <h2>اعملي كارت تهنئة</h2>
+    <p>اعملي صورة تهنئة جاهزة تحطيها على استوري أو تبعتيها لأي حد</p>
+    <button id="makeCardBtn">اعملي الكارت 🎁</button>
+    <div id="cardPreviewWrap">
+      <img id="cardPreview" alt="كارت تهنئة عيد ميلاد اسراء">
+      <div>
+        <a id="downloadCardLink" download="esraa-birthday-card.png">نزّلي الكارت</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>اتعملت خصيصي لعيد ميلاد اسراء هاني 🧡</footer>
+</div>
+
+<script>
+const TARGET_DATE = new Date('2026-09-16T00:00:00');
+const lockEl = document.getElementById('lock');
+const siteEl = document.getElementById('site');
+const pwInput = document.getElementById('pw');
+const lockMsg = document.getElementById('lockMsg');
+const mascotEl = document.getElementById('mascot');
+let wrongAttempts = 0;
+
+const earlyMessages = [
+  "استني العد يخلص يا ضكتووره",
+  "لسه بدري يا دكتورة، الصبر جميل 😌",
+  "برضو بدري! العد لسه شغال 👀",
+  "يا دكتورة إنتي بتستفزيني ولا إيه 😂 استني بس"
+];
+const wrongMessages = [
+  "الباسورد غلط، جرب تاني",
+  "برضو غلط؟ فكري كويس 🤔",
+  "قربتي... ولا لأ 😅",
+  "يا دكتورة، حاسبة كالوري مش باسورد 😂",
+  "طب تلميح: له علاقة بتاريخ معين 👀"
+];
+
+function reactMascot(mood){
+  mascotEl.classList.remove('sad','happy');
+  void mascotEl.offsetWidth;
+  mascotEl.classList.add(mood);
+  setTimeout(()=>mascotEl.classList.remove(mood), 700);
+}
+
+function birthdayHasArrived(){
+  return new Date() >= TARGET_DATE;
+}
+
+async function checkAlreadyUnlocked(){
+  try{
+    const res = await window.storage.get('unlocked');
+    if(res && res.value === 'true'){
+      showSite();
+      return;
+    }
+  }catch(e){
+    // not unlocked before, stay on lock screen
+  }
+  startLockCountdown();
+}
+
+function showSite(){
+  launchConfetti();
+  lockEl.style.display = 'none';
+  siteEl.classList.add('show');
+  loadGallery();
+  loadWishes();
+  updateScrollProgress();
+}
+
+function launchConfetti(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const icons = ['🍊','🥑','🍒','🥦','🍋','🎉'];
+  for(let i=0;i<16;i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.textContent = icons[Math.floor(Math.random()*icons.length)];
+    const angle = Math.random()*Math.PI*2;
+    const dist = 120 + Math.random()*160;
+    piece.style.setProperty('--tx', `${Math.cos(angle)*dist}px`);
+    piece.style.setProperty('--ty', `${Math.sin(angle)*dist}px`);
+    piece.style.setProperty('--tr', `${(Math.random()*360-180)}deg`);
+    document.body.appendChild(piece);
+    setTimeout(()=>piece.remove(), 1200);
+  }
+}
+
+async function tryUnlock(){
+  const val = pwInput.value.trim();
+  if(val === "2610"){
+    reactMascot('happy');
+    try{ await window.storage.set('unlocked','true'); }catch(e){}
+    setTimeout(showSite, 450);
+    return;
+  }
+  if(!birthdayHasArrived()){
+    const msg = earlyMessages[Math.min(wrongAttempts, earlyMessages.length-1)];
+    wrongAttempts++;
+    lockMsg.textContent = msg;
+    shakeCard();
+    reactMascot('sad');
+    return;
+  }
+  if(val === "169"){
+    reactMascot('happy');
+    try{ await window.storage.set('unlocked','true'); }catch(e){}
+    setTimeout(showSite, 450);
+  } else {
+    const msg = wrongMessages[Math.min(wrongAttempts, wrongMessages.length-1)];
+    wrongAttempts++;
+    lockMsg.textContent = msg;
+    shakeCard();
+    reactMascot('sad');
+  }
+}
+
+function shakeCard(){
+  const card = lockEl.querySelector('.lock-card');
+  card.classList.remove('shake');
+  void card.offsetWidth;
+  card.classList.add('shake');
+}
+
+document.getElementById('unlockBtn').addEventListener('click', tryUnlock);
+pwInput.addEventListener('keydown', e => { if(e.key === 'Enter') tryUnlock(); });
+
+checkAlreadyUnlocked();
+
+// ---------- COUNTDOWN (on the lock screen) ----------
+function startLockCountdown(){
+  function tick(){
+    const now = new Date();
+    const diff = TARGET_DATE - now;
+    if(diff <= 0){
+      document.getElementById('lockCountdown').style.display = 'none';
+      document.getElementById('lockDoneMsg').style.display = 'block';
+      clearInterval(timer);
+      return;
+    }
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff/(1000*60*60))%24);
+    const m = Math.floor((diff/(1000*60))%60);
+    const s = Math.floor((diff/1000)%60);
+    document.getElementById('cd-days').textContent = d;
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+}
+
+// ---------- CAKE ----------
+function playBlowSound(){
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const dur = 0.35;
+    const bufferSize = Math.floor(ctx.sampleRate * dur);
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for(let i=0;i<bufferSize;i++){
+      data[i] = (Math.random()*2-1) * (1 - i/bufferSize);
+    }
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(1400, ctx.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + dur);
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.5, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + dur);
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    noise.start();
+    noise.stop(ctx.currentTime + dur);
+  }catch(e){
+    // audio unsupported, fail silently
+  }
+}
+const candles = document.querySelectorAll('.candle');
+let blownCount = 0;
+function blowCandle(el){
+  if(el.classList.contains('blown')) return;
+  playBlowSound();
+  el.classList.add('blown');
+  blownCount++;
+  if(blownCount === candles.length){
+    document.getElementById('cakeHint').style.display = 'none';
+    document.getElementById('cakeMsg').style.display = 'block';
+    launchConfetti();
+  }
+}
+candles.forEach(c => {
+  c.addEventListener('click', () => blowCandle(c));
+  c.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); blowCandle(c); }
+  });
+});
+
+// ---------- WISH WALL ----------
+const wishWallEl = document.getElementById('wishWall');
+const wishEmptyEl = document.getElementById('wishEmpty');
+const wishInput = document.getElementById('wishInput');
+const wishStatus = document.getElementById('wishStatus');
+
+async function getWishes(){
+  try{
+    const res = await window.storage.get('wishes', true);
+    return res && res.value ? JSON.parse(res.value) : [];
+  }catch(e){
+    return [];
+  }
+}
+async function saveWishes(arr){
+  try{
+    await window.storage.set('wishes', JSON.stringify(arr), true);
+    return true;
+  }catch(e){
+    return false;
+  }
+}
+function renderWishes(wishes){
+  wishWallEl.innerHTML = '';
+  if(!wishes || wishes.length === 0){
+    wishWallEl.appendChild(wishEmptyEl);
+    return;
+  }
+  wishes.forEach(w => {
+    const note = document.createElement('div');
+    note.className = 'wish-note';
+    note.innerHTML = `<button class="wish-remove" data-id="${w.id}" aria-label="مسح الأمنية">×</button>${escapeHtml(w.text)}`;
+    wishWallEl.appendChild(note);
+  });
+  wishWallEl.querySelectorAll('.wish-remove').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.getAttribute('data-id');
+      let wishes = await getWishes();
+      wishes = wishes.filter(w => w.id !== id);
+      await saveWishes(wishes);
+      renderWishes(wishes);
+    });
+  });
+}
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+async function loadWishes(){
+  const wishes = await getWishes();
+  renderWishes(wishes);
+}
+document.getElementById('addWishBtn').addEventListener('click', addWish);
+wishInput.addEventListener('keydown', e => { if(e.key === 'Enter') addWish(); });
+async function addWish(){
+  const text = wishInput.value.trim();
+  if(!text) return;
+  wishStatus.textContent = 'بنضيف...';
+  const wishes = await getWishes();
+  wishes.push({ id: Date.now().toString(36)+Math.random().toString(36).slice(2), text });
+  const ok = await saveWishes(wishes);
+  if(ok){
+    renderWishes(wishes);
+    wishInput.value = '';
+    wishStatus.textContent = 'اتضافت 🎉';
+  } else {
+    wishStatus.textContent = 'حصل خطأ، جرب تاني';
+  }
+  setTimeout(()=>{ wishStatus.textContent=''; }, 2500);
+}
+
+// ---------- SCROLL PROGRESS ----------
+const scrollFill = document.getElementById('scrollFill');
+const scrollFruit = document.getElementById('scrollFruit');
+function updateScrollProgress(){
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const percent = max > 0 ? Math.min(100, Math.max(0, (scrollTop/max)*100)) : 0;
+  scrollFill.style.width = percent + '%';
+  scrollFruit.style.right = percent + '%';
+}
+window.addEventListener('scroll', () => requestAnimationFrame(updateScrollProgress));
+window.addEventListener('resize', updateScrollProgress);
+
+// ---------- CONFETTI BUTTON ----------
+document.getElementById('confettiBtn').addEventListener('click', () => launchConfetti());
+
+// ---------- GREETING CARD ----------
+document.getElementById('makeCardBtn').addEventListener('click', generateCard);
+
+function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight){
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+  for(const word of words){
+    const test = line ? line + ' ' + word : word;
+    if(ctx.measureText(test).width > maxWidth && line){
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  }
+  if(line) lines.push(line);
+  lines.forEach((l,i) => ctx.fillText(l, x, y + i*lineHeight));
+  return lines.length;
+}
+
+async function generateCard(){
+  try{ await document.fonts.load('700 60px Lalezar'); await document.fonts.load('500 28px Tajawal'); }catch(e){}
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 900;
+  canvas.height = 1100;
+  const ctx = canvas.getContext('2d');
+  ctx.direction = 'rtl';
+  ctx.textAlign = 'center';
+
+  const grad = ctx.createLinearGradient(0,0,900,1100);
+  grad.addColorStop(0,'#1e4235');
+  grad.addColorStop(1,'#153228');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,900,1100);
+
+  function fruitCircle(cx,cy,r,color,lineColor){
+    ctx.beginPath();
+    ctx.arc(cx,cy,r,0,Math.PI*2);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(cx,cy-r); ctx.lineTo(cx,cy+r); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx-r*0.7,cy-r*0.7); ctx.lineTo(cx+r*0.7,cy+r*0.7); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx-r*0.7,cy+r*0.7); ctx.lineTo(cx+r*0.7,cy-r*0.7); ctx.stroke();
+  }
+  fruitCircle(140,150,70,'#F2A93B','#e0912a');
+  fruitCircle(770,180,50,'#E85D75','#c94764');
+  ctx.beginPath();
+  ctx.ellipse(760,900,60,70,0.3,0,Math.PI*2);
+  ctx.fillStyle = '#6f9a4a';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.ellipse(140,950,55,65,-0.3,0,Math.PI*2);
+  ctx.fillStyle = '#8FB56B';
+  ctx.fill();
+
+  ctx.fillStyle = '#F2A93B';
+  ctx.font = '600 32px Tajawal, sans-serif';
+  ctx.fillText('عيد ميلادك يا', 450, 420);
+
+  ctx.fillStyle = '#FBF4E6';
+  ctx.font = '700 92px Lalezar, sans-serif';
+  ctx.fillText('اسراء 🎂', 450, 530);
+
+  ctx.fillStyle = '#dfe9df';
+  ctx.font = '500 30px Tajawal, sans-serif';
+  wrapCanvasText(ctx, 'يا رب السنة الجديدة تجيبلك كل اللي في بالك، صحة وسعادة ونجاح', 450, 640, 620, 46);
+
+  ctx.fillStyle = '#F2A93B';
+  ctx.font = '600 26px Tajawal, sans-serif';
+  ctx.fillText('من صاحبك اللي فرحان بيكي 🧡', 450, 1020);
+
+  const dataUrl = canvas.toDataURL('image/png');
+  document.getElementById('cardPreview').src = dataUrl;
+  document.getElementById('downloadCardLink').href = dataUrl;
+  document.getElementById('cardPreviewWrap').style.display = 'block';
+  document.getElementById('cardPreviewWrap').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+// ---------- GALLERY ----------
+const galleryEl = document.getElementById('gallery');
+const emptyState = document.getElementById('emptyState');
+const fileInput = document.getElementById('fileInput');
+const uploadStatus = document.getElementById('uploadStatus');
+
+document.getElementById('addPhotoBtn').addEventListener('click', () => fileInput.click());
+
+async function getGallery(){
+  try{
+    const res = await window.storage.get('gallery', true);
+    return res && res.value ? JSON.parse(res.value) : [];
+  }catch(e){
+    return [];
+  }
+}
+
+async function saveGallery(arr){
+  try{
+    await window.storage.set('gallery', JSON.stringify(arr), true);
+    return true;
+  }catch(e){
+    return false;
+  }
+}
+
+function resizeImage(file){
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const maxW = 800;
+        const scale = Math.min(1, maxW/img.width);
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width*scale;
+        canvas.height = img.height*scale;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img,0,0,canvas.width,canvas.height);
+        resolve(canvas.toDataURL('image/jpeg',0.72));
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function renderGallery(photos){
+  galleryEl.innerHTML = '';
+  if(!photos || photos.length === 0){
+    galleryEl.appendChild(emptyState);
+    return;
+  }
+  photos.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'photo-card';
+    card.innerHTML = `
+      <div class="tape"></div>
+      <button class="remove-btn" data-id="${p.id}" aria-label="مسح الصورة">×</button>
+      <img src="${p.dataUrl}" alt="ذكرى مع اسراء">
+    `;
+    galleryEl.appendChild(card);
+  });
+  galleryEl.querySelectorAll('.remove-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.getAttribute('data-id');
+      let photos = await getGallery();
+      photos = photos.filter(p => p.id !== id);
+      await saveGallery(photos);
+      renderGallery(photos);
+    });
+  });
+}
+
+async function loadGallery(){
+  uploadStatus.textContent = 'بنجيب الصور...';
+  const photos = await getGallery();
+  renderGallery(photos);
+  uploadStatus.textContent = '';
+}
+
+fileInput.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if(!file) return;
+  uploadStatus.textContent = 'بنضيف الصورة...';
+  try{
+    const dataUrl = await resizeImage(file);
+    const photos = await getGallery();
+    photos.push({ id: Date.now().toString(36)+Math.random().toString(36).slice(2), dataUrl });
+    const ok = await saveGallery(photos);
+    if(ok){
+      renderGallery(photos);
+      uploadStatus.textContent = 'اتضافت الصورة 🎉';
+    } else {
+      uploadStatus.textContent = 'حصل خطأ، جرب تاني';
+    }
+  }catch(err){
+    uploadStatus.textContent = 'حصل خطأ في رفع الصورة';
+  }
+  fileInput.value = '';
+  setTimeout(()=>{ uploadStatus.textContent=''; }, 3000);
+});
+</script>
+</body>
+</html>
