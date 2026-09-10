@@ -731,7 +731,7 @@ footer{
 
   <button class="confetti-btn" id="confettiBtn" aria-label="نزّل كونفيتي">🎉</button>
   <button class="music-btn" id="musicBtn" aria-label="شغّل أغنية عيد الميلاد">🎵</button>
-  <audio id="unlockSound" src="unlock-sound.mp3" preload="auto"></audio>
+
 
 
   <section class="hero">
@@ -856,6 +856,21 @@ const lockMsg = document.getElementById('lockMsg');
 const mascotEl = document.getElementById('mascot');
 let wrongAttempts = 0;
 
+// بنحمل صوت الفتح بـ Web Audio API بدل audio tag، عشان يشتغل صح على الموبايل
+let unlockAudioCtx = null;
+let unlockBuffer = null;
+function initUnlockSound(){
+  try{
+    unlockAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    fetch('unlock-sound.mp3')
+      .then(res => res.arrayBuffer())
+      .then(buf => unlockAudioCtx.decodeAudioData(buf))
+      .then(decoded => { unlockBuffer = decoded; })
+      .catch(() => {});
+  }catch(e){}
+}
+initUnlockSound();
+
 const earlyMessages = [
   "استني العد يخلص يا ضكتووره",
   "لسه بدري يا دكتورة، الصبر جميل 😌",
@@ -923,6 +938,12 @@ function launchConfetti(){
 async function tryUnlock(){
   const val = pwInput.value.trim();
   if(val === "2610"){
+    lockMsg.textContent = "ده عيد ميلادي متنساهوش بقى 😂";
+    shakeCard();
+    reactMascot('sad');
+    return;
+  }
+  if(val === "2010"){
     reactMascot('happy');
     playUnlockSound();
     try{ await window.storage.set('unlocked','true'); }catch(e){}
@@ -952,10 +973,12 @@ async function tryUnlock(){
 }
 
 function playUnlockSound(){
-  const sound = document.getElementById('unlockSound');
-  if(!sound) return;
-  sound.currentTime = 0;
-  sound.play().catch(()=>{});
+  if(!unlockAudioCtx || !unlockBuffer) return;
+  if(unlockAudioCtx.state === 'suspended'){ unlockAudioCtx.resume(); }
+  const source = unlockAudioCtx.createBufferSource();
+  source.buffer = unlockBuffer;
+  source.connect(unlockAudioCtx.destination);
+  source.start(0);
 }
 
 function shakeCard(){
