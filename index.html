@@ -664,6 +664,24 @@ footer{
   100%{transform:translate(var(--tx),var(--ty)) scale(1) rotate(var(--tr));opacity:0;}
 }
 
+.success-wave{
+  position:fixed;
+  top:50%;left:50%;
+  width:300vmax;
+  height:300vmax;
+  margin-top:-150vmax;
+  margin-left:-150vmax;
+  border-radius:50%;
+  background:radial-gradient(circle, var(--citrus), var(--berry) 55%, var(--leaf) 100%);
+  z-index:180;
+  pointer-events:none;
+  transform:scale(0);
+  animation:waveIn .38s ease-out forwards;
+}
+.success-wave.fade{animation:waveOut .35s ease-in forwards;}
+@keyframes waveIn{ to{transform:scale(1);} }
+@keyframes waveOut{ from{opacity:1;transform:scale(1);} to{opacity:0;transform:scale(1);} }
+
 @media (max-width:720px){
   .hero-inner{flex-direction:column;text-align:center;}
   .hero-text{order:1;}
@@ -679,6 +697,7 @@ footer{
   .bg-particle{display:none;}
   #unlockBtn,#addPhotoBtn,.photo-card{transition:none;}
   .confetti-piece{display:none;}
+  .success-wave{display:none;}
 }
 </style>
 </head>
@@ -935,6 +954,21 @@ function launchConfetti(){
   }
 }
 
+function playSuccessWave(revealCallback){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    revealCallback();
+    return;
+  }
+  const wave = document.createElement('div');
+  wave.className = 'success-wave';
+  document.body.appendChild(wave);
+  setTimeout(() => {
+    revealCallback();
+    wave.classList.add('fade');
+    setTimeout(() => wave.remove(), 380);
+  }, 380);
+}
+
 async function tryUnlock(){
   const val = pwInput.value.trim();
   if(val === "2610"){
@@ -944,10 +978,16 @@ async function tryUnlock(){
     return;
   }
   if(val === "2010"){
+    lockMsg.textContent = "ده عيد ميلاد لمياء بقى 😂";
+    shakeCard();
+    reactMascot('sad');
+    return;
+  }
+  if(val === "20032610"){
     reactMascot('happy');
     playUnlockSound();
     try{ await window.storage.set('unlocked','true'); }catch(e){}
-    setTimeout(showSite, 450);
+    playSuccessWave(showSite);
     return;
   }
   if(!birthdayHasArrived()){
@@ -962,7 +1002,7 @@ async function tryUnlock(){
     reactMascot('happy');
     playUnlockSound();
     try{ await window.storage.set('unlocked','true'); }catch(e){}
-    setTimeout(showSite, 450);
+    playSuccessWave(showSite);
   } else {
     const msg = wrongMessages[Math.min(wrongAttempts, wrongMessages.length-1)];
     wrongAttempts++;
