@@ -390,53 +390,115 @@ button, input{font-family:inherit;}
   filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));
 }
 
-/* CARD */
-.card-section{
-  background:var(--bg-deep);
-  color:var(--cream);
+/* MESSAGES */
+.messages-section{
+  background:var(--cream);
   padding:70px 8vw 80px;
   text-align:center;
 }
-.card-section h2{
+.messages-section h2{
   font-family:'Lalezar',sans-serif;
   font-size:2rem;
+  color:var(--bg-deep);
   margin:0 0 8px;
 }
-.card-section p{color:#cfe0d3;margin:0 0 26px;}
-#makeCardBtn{
-  background:var(--citrus);
-  color:var(--ink);
-  border:none;
-  padding:14px 28px;
-  border-radius:100px;
-  font-weight:700;
-  font-size:1rem;
+.messages-section .sub{color:#5b6d63;margin-bottom:34px;font-size:1rem;}
+.messages-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:20px;
+  max-width:1000px;
+  margin:0 auto;
+}
+.msg-card{
+  perspective:1200px;
+  height:170px;
   cursor:pointer;
-  transition:transform .15s ease, background .2s ease;
 }
-#makeCardBtn:hover{background:#e0982e;transform:translateY(-1px);}
-#cardPreviewWrap{
-  display:none;
-  margin-top:30px;
-}
-#cardPreview{
-  max-width:280px;
+.msg-card-inner{
+  position:relative;
   width:100%;
-  border-radius:16px;
-  box-shadow:0 20px 40px rgba(0,0,0,.35);
+  height:100%;
+  transition:transform .6s;
+  transform-style:preserve-3d;
 }
-#downloadCardLink{
-  display:inline-block;
-  margin-top:18px;
-  background:var(--leaf);
-  color:#fff;
-  text-decoration:none;
-  padding:12px 26px;
-  border-radius:100px;
-  font-weight:700;
-  transition:transform .15s ease, background .2s ease;
+.msg-card.flipped .msg-card-inner{transform:rotateY(180deg);}
+.msg-front,.msg-back{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  text-align:center;
 }
-#downloadCardLink:hover{background:#7ba158;transform:translateY(-1px);}
+.msg-front{
+  background:var(--bg-deep);
+  color:var(--cream);
+  flex-direction:column;
+  gap:8px;
+  box-shadow:0 10px 20px rgba(20,40,30,.18);
+}
+.msg-front svg{width:34px;height:34px;}
+.msg-front .msg-name{font-family:'Lalezar',sans-serif;font-size:1.1rem;}
+.msg-front .msg-hint{font-size:.78rem;color:#cfe0d3;}
+.msg-back{
+  background:#fff;
+  color:var(--text-dark);
+  transform:rotateY(180deg);
+  font-size:.9rem;
+  line-height:1.7;
+  box-shadow:0 10px 20px rgba(20,40,30,.15);
+  overflow-y:auto;
+}
+
+/* PHOTOS */
+.photos-section{
+  background:var(--cream);
+  padding:70px 8vw 90px;
+  text-align:center;
+}
+.photos-section h2{
+  font-family:'Lalezar',sans-serif;
+  font-size:2rem;
+  color:var(--bg-deep);
+  margin:0 0 8px;
+}
+.photos-section .sub{color:#5b6d63;margin-bottom:34px;font-size:1rem;}
+.photos-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:22px;
+  max-width:1000px;
+  margin:0 auto;
+}
+.photo-card{
+  background:#fff;
+  padding:10px 10px 16px;
+  border-radius:4px;
+  box-shadow:0 10px 20px rgba(20,40,30,.12);
+  position:relative;
+}
+.photo-card:nth-child(odd){transform:rotate(-2deg);}
+.photo-card:nth-child(even){transform:rotate(2deg);}
+.photo-card .tape{
+  position:absolute;
+  top:-10px;left:50%;
+  transform:translateX(-50%) rotate(-3deg);
+  width:56px;height:20px;
+  background:rgba(242,169,59,.75);
+  border-radius:2px;
+}
+.photo-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
+  border-radius:2px;
+  background:#eee6d3;
+}
 
 /* MESSAGE */
 .message-section{
@@ -461,186 +523,6 @@ button, input{font-family:inherit;}
   font-family:'Lalezar',sans-serif;
   color:var(--citrus);
   font-size:1.3rem;
-}
-
-/* WISH WALL */
-.wish-section{
-  background:var(--bg-deep-2);
-  color:var(--cream);
-  padding:70px 8vw 80px;
-  text-align:center;
-}
-.wish-head h2{
-  font-family:'Lalezar',sans-serif;
-  font-size:2rem;
-  margin:0 0 8px;
-}
-.wish-head p{color:#cfe0d3;margin:0 0 26px;}
-.wish-form{
-  display:flex;
-  gap:10px;
-  max-width:480px;
-  margin:0 auto 8px;
-  flex-wrap:wrap;
-}
-#wishInput{
-  flex:1;
-  min-width:200px;
-  padding:13px 16px;
-  border-radius:12px;
-  border:none;
-  font-size:1rem;
-  background:var(--cream);
-  color:var(--text-dark);
-}
-#addWishBtn{
-  background:var(--citrus);
-  color:var(--ink);
-  border:none;
-  padding:13px 22px;
-  border-radius:12px;
-  font-weight:700;
-  cursor:pointer;
-  transition:transform .15s ease, background .2s ease;
-}
-#addWishBtn:hover{background:#e0982e;transform:translateY(-1px);}
-#wishStatus{min-height:18px;font-size:.85rem;color:#cfe0d3;margin-bottom:30px;}
-.wish-wall{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:20px;
-  max-width:1000px;
-  margin:0 auto;
-}
-.wish-note{
-  position:relative;
-  padding:20px 18px 16px;
-  border-radius:4px 16px 4px 16px;
-  text-align:right;
-  font-size:.98rem;
-  line-height:1.7;
-  color:var(--ink);
-  box-shadow:0 10px 18px rgba(0,0,0,.18);
-  animation:popIn .4s ease both;
-}
-.wish-note:nth-child(3n){background:#FCE7CF;transform:rotate(-1.6deg);}
-.wish-note:nth-child(3n+1){background:#FBD7DE;transform:rotate(1.4deg);}
-.wish-note:nth-child(3n+2){background:#E4EFD8;transform:rotate(-.8deg);}
-.wish-remove{
-  position:absolute;
-  top:6px;left:8px;
-  width:22px;height:22px;
-  border-radius:50%;
-  border:none;
-  background:rgba(0,0,0,.15);
-  color:#3a3a3a;
-  font-size:.8rem;
-  line-height:1;
-  cursor:pointer;
-}
-.wish-remove:hover{background:var(--berry);color:#fff;}
-#wishEmpty{color:#cfe0d3;}
-
-/* GALLERY */
-.gallery-section{
-  background:var(--cream);
-  padding:70px 8vw 90px;
-}
-.gallery-head{
-  text-align:center;
-  max-width:600px;
-  margin:0 auto 34px;
-}
-.gallery-head h2{
-  font-family:'Lalezar',sans-serif;
-  font-size:2rem;
-  color:var(--bg-deep);
-  margin:0 0 8px;
-}
-.gallery-head p{color:#5b6d63;margin:0 0 22px;}
-#addPhotoBtn{
-  background:var(--leaf);
-  color:#fff;
-  border:none;
-  padding:13px 26px;
-  border-radius:100px;
-  font-weight:700;
-  font-size:1rem;
-  cursor:pointer;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  transition:transform .15s ease, background .2s ease;
-}
-#addPhotoBtn:hover{background:#7ba158;transform:translateY(-1px);}
-#fileInput{display:none;}
-#uploadStatus{
-  margin-top:10px;
-  font-size:.9rem;
-  color:#5b6d63;
-  min-height:18px;
-}
-
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:22px;
-  max-width:1000px;
-  margin:0 auto;
-}
-.photo-card{
-  background:#fff;
-  padding:10px 10px 16px;
-  border-radius:4px;
-  box-shadow:0 10px 20px rgba(20,40,30,.12);
-  position:relative;
-  animation:popIn .4s ease both;
-  transition:transform .25s ease, box-shadow .25s ease;
-}
-.photo-card:nth-child(odd){transform:rotate(-2.2deg);}
-.photo-card:nth-child(even){transform:rotate(2deg);}
-.photo-card:hover{
-  transform:rotate(0deg) translateY(-6px) scale(1.03);
-  box-shadow:0 16px 28px rgba(20,40,30,.22);
-}
-@keyframes popIn{
-  from{opacity:0;transform:scale(.85);}
-  to{opacity:1;}
-}
-.photo-card img{
-  width:100%;
-  height:170px;
-  object-fit:cover;
-  display:block;
-  border-radius:2px;
-}
-.tape{
-  position:absolute;
-  top:-10px;left:50%;
-  transform:translateX(-50%) rotate(-3deg);
-  width:56px;height:20px;
-  background:rgba(242,169,59,.75);
-  border-radius:2px;
-}
-.remove-btn{
-  position:absolute;
-  top:6px;left:6px;
-  width:24px;height:24px;
-  border-radius:50%;
-  border:none;
-  background:rgba(20,30,25,.55);
-  color:#fff;
-  font-size:.85rem;
-  line-height:1;
-  cursor:pointer;
-}
-.remove-btn:hover{background:var(--berry);}
-.empty-state{
-  text-align:center;
-  color:#8a9a8f;
-  font-size:.95rem;
-  grid-column:1/-1;
-  padding:20px 0;
 }
 
 footer{
@@ -692,10 +574,10 @@ footer{
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   .shake,.lock-leaf,#cd-secs,.hero-eyebrow,.hero h1,.hero p.lead,.hero-art,
-  .orange,.leaf1,.avocado,.cherry,.photo-card,.flame,.smoke,.wish-note,
+  .orange,.leaf1,.avocado,.cherry,.flame,.smoke,
   .mascot-wrap,.mascot .eye{animation:none !important;opacity:1 !important;transform:none;}
   .bg-particle{display:none;}
-  #unlockBtn,#addPhotoBtn,.photo-card{transition:none;}
+  #unlockBtn{transition:none;}
   .confetti-piece{display:none;}
   .success-wave{display:none;}
 }
@@ -812,54 +694,154 @@ footer{
     <div id="cakeMsg">اتمنيتي؟ 🎉 يارب أمنيتك تتحقق يا اسراء</div>
   </section>
 
+  <section class="messages-section">
+    <h2>رسايل ليكي</h2>
+    <div class="sub">دوسي على أي كارت تقري الرسالة</div>
+
+    <!--
+      عشان تضيفي رسالة جديدة: انسخي بلوك <div class="msg-card">...</div> كامل والصقيه تاني،
+      وغيري الاسم في msg-name والرسالة في msg-back.
+      عشان تشيلي رسالة: امسحي البلوك بتاعها كامل.
+    -->
+    <div class="messages-grid" id="messagesGrid">
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">احمد</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">اهلا</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">ميسره عبدالرحمن احمد محمد سالم</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">Happy Birthday Ya Esraa. 🤟🤟🎊🎊🎂🎂<br>كل سنة وانتي وعقبال 1000000000 مليون مليووووووون سنة يا دكتورة اسراء 🤟🤟🎂🎂🎊🎊❤️❤️</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">تامر عبد الله</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">أتمنى لكي كل خير وسعاده وتوفيق . وربنا يحقق لكي كل ما تتمنى و اكتر  يا دكتوره يا جميلة🌹</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">omar</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">خلي بالك هزعلك وبطلي عدم ردك ده علشان انا مبتصلش بحد <br>وكل سنه وانتي طيبه وبالف خير وجمال وهنا يابا 😂♥️</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">إحسان ياسين</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">إسراء الجميلة ❤️🌹اتمنى اشوفك احسن الناس محصلش بينا مواقف كتير لكنها كانت حلوة وانا بحبك جدا... وان شاء الله تحققي كل اللي بتحلمي بيه وزيادة وانتي في صحة وعافية ياربَ..ربنا يبارك في عمرك ويحسن عملك في اللي جاي كله ان شاء الله 😍<br>Happy Birthday 🌿❤️🎂</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">.تيسير</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">كل عام وانتى بخير وصحة وسلامة ويارب تحقي كل اللى نفسك فية يارب ويفرح قلبك يارب</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">الأستاذ</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">بالتوفيق الدائم ان شاءالله</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">الأستاذ</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">دكتورة ممتازة</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">احمد سيد</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">كل سنة وانتي طيبة وبالف صحة وسلامة يارب وتكون سنة سعيدة عليكي وتحققي كل الي نفسك فيه وعقبال سنين كتير جايه 🥰🥳</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">Dina Ashraf</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">كل سنة وأنتي طيبة يا ايسو وبخير وسعادة وراحة بال وتحققي كل اللي بتتمنيه ودايما ناجحة ومتألقة 💗🎂🎉</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">Adel Adly</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">كل سنه وانتي طيبه وبخير يارب والعمر كلو ليكي يادكتور 🥰🎂</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="photos-section">
+    <h2>صور معاها</h2>
+    <div class="sub">لحظات نفتكرها كل ما نشوفها</div>
+
+    <!--
+      عشان تضيفي صورة: حطي ملف الصورة (jpg/png) في نفس الفولدر اللي فيه index.html،
+      وسميه بنفس اسم src اللي تحت (photo1.jpg وهكذا)، أو غيري اسم الملف في src نفسه.
+      عشان تضيفي كارت صورة جديد: انسخي بلوك <div class="photo-card">...</div> كامل والصقيه تاني بأي اسم ملف تاني.
+      عشان تشيلي كارت: امسحي البلوك بتاعه كامل.
+    -->
+    <div class="photos-grid">
+      <div class="photo-card"><div class="tape"></div><img src="photo1.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo2.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo3.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo4.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo5.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo6.jpg" alt="صورة معاها"></div>
+    </div>
+  </section>
+
   <section class="message-section">
     <div class="message-card">
       <svg class="quote" viewBox="0 0 24 24" fill="#F2A93B"><path d="M7 7c-2 0-4 2-4 5s2 5 4 5 3-1 3-3-1-3-2-3c0-2 1-3 2-3V5c-2 0-3 1-3 2zm10 0c-2 0-4 2-4 5s2 5 4 5 3-1 3-3-1-3-2-3c0-2 1-3 2-3V5c-2 0-3 1-3 2z"/></svg>
-      <p>يا رب السنة الجديدة تجيبلك كل اللي في بالك، صحة وسعادة، ونجاح في شغلك اللي بتحبيه، وناس حواليكي فاكراكي زي ما انتي بتفتكري كل الناس. وعقبال ما تحرمينا من الأكل الحلو لسنين جاية 😄</p>
-      <div class="sign">من صاحبك اللي فرحان بيكي</div>
-    </div>
-  </section>
-
-  <section class="wish-section">
-    <div class="wish-head">
-      <h2>الحيطة بتاعة الأمنيات</h2>
-      <p>كل واحد يكتب كلمة أو أمنية لاسراء، وهي هتيجي تقراها كلها</p>
-      <div class="wish-form">
-        <input type="text" id="wishInput" maxlength="140" placeholder="اكتب أمنيتك هنا...">
-        <button id="addWishBtn">ضيف</button>
-      </div>
-      <div id="wishStatus"></div>
-    </div>
-    <div class="wish-wall" id="wishWall">
-      <div class="empty-state" id="wishEmpty">لسه محدش كتب حاجة... يلا ابدأ!</div>
-    </div>
-  </section>
-
-  <section class="gallery-section">
-    <div class="gallery-head">
-      <h2>ذكرياتنا معاها</h2>
-      <p>ضيفوا صورة من عندكم لتبقى ذكرى نشوفها كلنا مع بعض</p>
-      <button id="addPhotoBtn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-        ضيفي صورة
-      </button>
-      <input type="file" id="fileInput" accept="image/*">
-      <div id="uploadStatus"></div>
-    </div>
-    <div class="gallery-grid" id="gallery">
-      <div class="empty-state" id="emptyState">لسه مفيش صور... كوني أول واحدة تضيف!</div>
-    </div>
-  </section>
-
-  <section class="card-section">
-    <h2>اعملي كارت تهنئة</h2>
-    <p>اعملي صورة تهنئة جاهزة تحطيها على استوري أو تبعتيها لأي حد</p>
-    <button id="makeCardBtn">اعملي الكارت 🎁</button>
-    <div id="cardPreviewWrap">
-      <img id="cardPreview" alt="كارت تهنئة عيد ميلاد اسراء">
-      <div>
-        <a id="downloadCardLink" download="esraa-birthday-card.png">نزّلي الكارت</a>
-      </div>
+      <p>يا رب السنة الجديدة تجيبلك كل اللي في بالك، صحة وسعادة، ونجاح في شغلك اللي بتحبيه. وكل سنة وصحبتنا زي ما هي، من غير ما تقل يوم عن كده. وعقبال ما تحرمينا من الأكل الحلو لسنين جاية 😄</p>
+      <div class="sign">من صحابك اللي مبسوطين بيكي</div>
     </div>
   </section>
 
@@ -941,8 +923,6 @@ function showSite(){
   launchConfetti();
   lockEl.style.display = 'none';
   siteEl.classList.add('show');
-  loadGallery();
-  loadWishes();
   updateScrollProgress();
 }
 
@@ -1115,78 +1095,6 @@ candles.forEach(c => {
   });
 });
 
-// ---------- WISH WALL ----------
-const wishWallEl = document.getElementById('wishWall');
-const wishEmptyEl = document.getElementById('wishEmpty');
-const wishInput = document.getElementById('wishInput');
-const wishStatus = document.getElementById('wishStatus');
-
-async function getWishes(){
-  try{
-    const res = await window.storage.get('wishes', true);
-    return res && res.value ? JSON.parse(res.value) : [];
-  }catch(e){
-    return [];
-  }
-}
-async function saveWishes(arr){
-  try{
-    await window.storage.set('wishes', JSON.stringify(arr), true);
-    return true;
-  }catch(e){
-    return false;
-  }
-}
-function renderWishes(wishes){
-  wishWallEl.innerHTML = '';
-  if(!wishes || wishes.length === 0){
-    wishWallEl.appendChild(wishEmptyEl);
-    return;
-  }
-  wishes.forEach(w => {
-    const note = document.createElement('div');
-    note.className = 'wish-note';
-    note.innerHTML = `<button class="wish-remove" data-id="${w.id}" aria-label="مسح الأمنية">×</button>${escapeHtml(w.text)}`;
-    wishWallEl.appendChild(note);
-  });
-  wishWallEl.querySelectorAll('.wish-remove').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const id = btn.getAttribute('data-id');
-      let wishes = await getWishes();
-      wishes = wishes.filter(w => w.id !== id);
-      await saveWishes(wishes);
-      renderWishes(wishes);
-    });
-  });
-}
-function escapeHtml(str){
-  const d = document.createElement('div');
-  d.textContent = str;
-  return d.innerHTML;
-}
-async function loadWishes(){
-  const wishes = await getWishes();
-  renderWishes(wishes);
-}
-document.getElementById('addWishBtn').addEventListener('click', addWish);
-wishInput.addEventListener('keydown', e => { if(e.key === 'Enter') addWish(); });
-async function addWish(){
-  const text = wishInput.value.trim();
-  if(!text) return;
-  wishStatus.textContent = 'بنضيف...';
-  const wishes = await getWishes();
-  wishes.push({ id: Date.now().toString(36)+Math.random().toString(36).slice(2), text });
-  const ok = await saveWishes(wishes);
-  if(ok){
-    renderWishes(wishes);
-    wishInput.value = '';
-    wishStatus.textContent = 'اتضافت 🎉';
-  } else {
-    wishStatus.textContent = 'حصل خطأ، جرب تاني';
-  }
-  setTimeout(()=>{ wishStatus.textContent=''; }, 2500);
-}
-
 // ---------- MUSIC (synthesized "Happy Birthday" melody — public-domain tune) ----------
 const NOTE_FREQ = {
   C4:261.63, D4:293.66, E4:329.63, F4:349.23, G4:392.00, A4:440.00, B4:493.88,
@@ -1263,192 +1171,11 @@ window.addEventListener('resize', updateScrollProgress);
 // ---------- CONFETTI BUTTON ----------
 document.getElementById('confettiBtn').addEventListener('click', () => launchConfetti());
 
-// ---------- GREETING CARD ----------
-document.getElementById('makeCardBtn').addEventListener('click', generateCard);
-
-function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight){
-  const words = text.split(' ');
-  let line = '';
-  const lines = [];
-  for(const word of words){
-    const test = line ? line + ' ' + word : word;
-    if(ctx.measureText(test).width > maxWidth && line){
-      lines.push(line);
-      line = word;
-    } else {
-      line = test;
-    }
-  }
-  if(line) lines.push(line);
-  lines.forEach((l,i) => ctx.fillText(l, x, y + i*lineHeight));
-  return lines.length;
-}
-
-async function generateCard(){
-  try{ await document.fonts.load('700 60px Lalezar'); await document.fonts.load('500 28px Tajawal'); }catch(e){}
-
-  const canvas = document.createElement('canvas');
-  canvas.width = 900;
-  canvas.height = 1100;
-  const ctx = canvas.getContext('2d');
-  ctx.direction = 'rtl';
-  ctx.textAlign = 'center';
-
-  const grad = ctx.createLinearGradient(0,0,900,1100);
-  grad.addColorStop(0,'#1e4235');
-  grad.addColorStop(1,'#153228');
-  ctx.fillStyle = grad;
-  ctx.fillRect(0,0,900,1100);
-
-  function fruitCircle(cx,cy,r,color,lineColor){
-    ctx.beginPath();
-    ctx.arc(cx,cy,r,0,Math.PI*2);
-    ctx.fillStyle = color;
-    ctx.fill();
-    ctx.strokeStyle = lineColor;
-    ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.moveTo(cx,cy-r); ctx.lineTo(cx,cy+r); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(cx-r*0.7,cy-r*0.7); ctx.lineTo(cx+r*0.7,cy+r*0.7); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(cx-r*0.7,cy+r*0.7); ctx.lineTo(cx+r*0.7,cy-r*0.7); ctx.stroke();
-  }
-  fruitCircle(140,150,70,'#F2A93B','#e0912a');
-  fruitCircle(770,180,50,'#E85D75','#c94764');
-  ctx.beginPath();
-  ctx.ellipse(760,900,60,70,0.3,0,Math.PI*2);
-  ctx.fillStyle = '#6f9a4a';
-  ctx.fill();
-  ctx.beginPath();
-  ctx.ellipse(140,950,55,65,-0.3,0,Math.PI*2);
-  ctx.fillStyle = '#8FB56B';
-  ctx.fill();
-
-  ctx.fillStyle = '#F2A93B';
-  ctx.font = '600 32px Tajawal, sans-serif';
-  ctx.fillText('عيد ميلادك يا', 450, 420);
-
-  ctx.fillStyle = '#FBF4E6';
-  ctx.font = '700 92px Lalezar, sans-serif';
-  ctx.fillText('اسراء 🎂', 450, 530);
-
-  ctx.fillStyle = '#dfe9df';
-  ctx.font = '500 30px Tajawal, sans-serif';
-  wrapCanvasText(ctx, 'يا رب السنة الجديدة تجيبلك كل اللي في بالك، صحة وسعادة ونجاح', 450, 640, 620, 46);
-
-  ctx.fillStyle = '#F2A93B';
-  ctx.font = '600 26px Tajawal, sans-serif';
-  ctx.fillText('من صاحبك اللي فرحان بيكي 🧡', 450, 1020);
-
-  const dataUrl = canvas.toDataURL('image/png');
-  document.getElementById('cardPreview').src = dataUrl;
-  document.getElementById('downloadCardLink').href = dataUrl;
-  document.getElementById('cardPreviewWrap').style.display = 'block';
-  document.getElementById('cardPreviewWrap').scrollIntoView({behavior:'smooth', block:'center'});
-}
-
-// ---------- GALLERY ----------
-const galleryEl = document.getElementById('gallery');
-const emptyState = document.getElementById('emptyState');
-const fileInput = document.getElementById('fileInput');
-const uploadStatus = document.getElementById('uploadStatus');
-
-document.getElementById('addPhotoBtn').addEventListener('click', () => fileInput.click());
-
-async function getGallery(){
-  try{
-    const res = await window.storage.get('gallery', true);
-    return res && res.value ? JSON.parse(res.value) : [];
-  }catch(e){
-    return [];
-  }
-}
-
-async function saveGallery(arr){
-  try{
-    await window.storage.set('gallery', JSON.stringify(arr), true);
-    return true;
-  }catch(e){
-    return false;
-  }
-}
-
-function resizeImage(file){
-  return new Promise((resolve,reject)=>{
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = new Image();
-      img.onload = () => {
-        const maxW = 800;
-        const scale = Math.min(1, maxW/img.width);
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width*scale;
-        canvas.height = img.height*scale;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img,0,0,canvas.width,canvas.height);
-        resolve(canvas.toDataURL('image/jpeg',0.72));
-      };
-      img.onerror = reject;
-      img.src = e.target.result;
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-
-function renderGallery(photos){
-  galleryEl.innerHTML = '';
-  if(!photos || photos.length === 0){
-    galleryEl.appendChild(emptyState);
-    return;
-  }
-  photos.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'photo-card';
-    card.innerHTML = `
-      <div class="tape"></div>
-      <button class="remove-btn" data-id="${p.id}" aria-label="مسح الصورة">×</button>
-      <img src="${p.dataUrl}" alt="ذكرى مع اسراء">
-    `;
-    galleryEl.appendChild(card);
-  });
-  galleryEl.querySelectorAll('.remove-btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const id = btn.getAttribute('data-id');
-      let photos = await getGallery();
-      photos = photos.filter(p => p.id !== id);
-      await saveGallery(photos);
-      renderGallery(photos);
-    });
-  });
-}
-
-async function loadGallery(){
-  uploadStatus.textContent = 'بنجيب الصور...';
-  const photos = await getGallery();
-  renderGallery(photos);
-  uploadStatus.textContent = '';
-}
-
-fileInput.addEventListener('change', async (e) => {
-  const file = e.target.files[0];
-  if(!file) return;
-  uploadStatus.textContent = 'بنضيف الصورة...';
-  try{
-    const dataUrl = await resizeImage(file);
-    const photos = await getGallery();
-    photos.push({ id: Date.now().toString(36)+Math.random().toString(36).slice(2), dataUrl });
-    const ok = await saveGallery(photos);
-    if(ok){
-      renderGallery(photos);
-      uploadStatus.textContent = 'اتضافت الصورة 🎉';
-    } else {
-      uploadStatus.textContent = 'حصل خطأ، جرب تاني';
-    }
-  }catch(err){
-    uploadStatus.textContent = 'حصل خطأ في رفع الصورة';
-  }
-  fileInput.value = '';
-  setTimeout(()=>{ uploadStatus.textContent=''; }, 3000);
+// ---------- MESSAGE CARDS (flip on click) ----------
+document.getElementById('messagesGrid').querySelectorAll('.msg-card').forEach(card => {
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
 });
+
 </script>
 </body>
 </html>
