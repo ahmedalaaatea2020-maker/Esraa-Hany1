@@ -498,6 +498,64 @@ button, input{font-family:inherit;}
   display:block;
   border-radius:2px;
   background:#eee6d3;
+  cursor:pointer;
+}
+
+/* PHOTO LIGHTBOX */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(10,18,14,.94);
+  z-index:300;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  padding:20px;
+}
+.lightbox.open{display:flex;}
+.lightbox img{
+  max-width:min(92vw, 700px);
+  max-height:75vh;
+  border-radius:12px;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+  animation:lightboxIn .35s ease;
+}
+@keyframes lightboxIn{
+  from{opacity:0;transform:scale(.94);}
+  to{opacity:1;transform:scale(1);}
+}
+.lightbox-close{
+  position:absolute;
+  top:18px;left:18px;
+  width:42px;height:42px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  font-size:1.4rem;
+  cursor:pointer;
+}
+.lightbox-close:hover{background:rgba(255,255,255,.28);}
+.lightbox-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:46px;height:46px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  font-size:1.4rem;
+  cursor:pointer;
+}
+.lightbox-nav:hover{background:rgba(255,255,255,.28);}
+.lightbox-prev{right:14px;}
+.lightbox-next{left:14px;}
+.lightbox-counter{
+  margin-top:14px;
+  color:#cfe0d3;
+  font-size:.88rem;
 }
 
 /* MESSAGE */
@@ -574,7 +632,7 @@ footer{
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   .shake,.lock-leaf,#cd-secs,.hero-eyebrow,.hero h1,.hero p.lead,.hero-art,
-  .orange,.leaf1,.avocado,.cherry,.flame,.smoke,
+  .orange,.leaf1,.avocado,.cherry,.flame,.smoke,.lightbox img,
   .mascot-wrap,.mascot .eye{animation:none !important;opacity:1 !important;transform:none;}
   .bg-particle{display:none;}
   #unlockBtn{transition:none;}
@@ -818,8 +876,8 @@ footer{
   </section>
 
   <section class="photos-section">
-    <h2>صور معاها</h2>
-    <div class="sub">لحظات نفتكرها كل ما نشوفها</div>
+    <h2>ذكريات السنين</h2>
+    <div class="sub">صور معاها من على مر السنين</div>
 
     <!--
       عشان تضيفي صورة: حطي ملف الصورة (jpg/png) في نفس الفولدر اللي فيه index.html،
@@ -834,8 +892,45 @@ footer{
       <div class="photo-card"><div class="tape"></div><img src="photo4.jpg" alt="صورة معاها"></div>
       <div class="photo-card"><div class="tape"></div><img src="photo5.jpg" alt="صورة معاها"></div>
       <div class="photo-card"><div class="tape"></div><img src="photo6.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo7.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo8.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo9.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo10.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo11.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo12.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo13.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo14.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo15.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo16.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo17.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo18.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo19.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo20.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo21.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo22.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo23.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo24.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo25.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo26.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo27.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo28.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo29.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo30.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo31.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo32.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo33.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo34.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo35.jpg" alt="صورة معاها"></div>
     </div>
   </section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="قفل الصورة">×</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="الصورة اللي فاتت">›</button>
+    <img id="lightboxImg" alt="صورة معاها مكبرة">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="الصورة اللي بعدها">‹</button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
 
   <section class="message-section">
     <div class="message-card">
@@ -860,17 +955,34 @@ let wrongAttempts = 0;
 // بنحمل صوت الفتح بـ Web Audio API بدل audio tag، عشان يشتغل صح على الموبايل
 let unlockAudioCtx = null;
 let unlockBuffer = null;
+let unlockSoundPending = false;
 function initUnlockSound(){
   try{
     unlockAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
     fetch('unlock-sound.mp3')
       .then(res => res.arrayBuffer())
       .then(buf => unlockAudioCtx.decodeAudioData(buf))
-      .then(decoded => { unlockBuffer = decoded; })
+      .then(decoded => {
+        unlockBuffer = decoded;
+        // لو المستخدم كان دوس دخول قبل ما الملف يخلص تحميل، شغليه فورًا أول ما يتجهز
+        if(unlockSoundPending){
+          unlockSoundPending = false;
+          playUnlockSound();
+        }
+      })
       .catch(() => {});
   }catch(e){}
 }
 initUnlockSound();
+
+// آيفون بيحتاج فتح الصوت (resume) من أول لمسة فعلية على الشاشة، مش بس لحظة الدخول
+['touchstart','pointerdown'].forEach(evt => {
+  document.addEventListener(evt, () => {
+    if(unlockAudioCtx && unlockAudioCtx.state === 'suspended'){
+      unlockAudioCtx.resume();
+    }
+  }, {once:true, passive:true});
+});
 
 const earlyMessages = [
   "استني العد يخلص يا ضكتووره",
@@ -1002,8 +1114,12 @@ async function tryUnlock(){
 }
 
 function playUnlockSound(){
-  if(!unlockAudioCtx || !unlockBuffer) return;
+  if(!unlockAudioCtx) return;
   if(unlockAudioCtx.state === 'suspended'){ unlockAudioCtx.resume(); }
+  if(!unlockBuffer){
+    unlockSoundPending = true;
+    return;
+  }
   const source = unlockAudioCtx.createBufferSource();
   source.buffer = unlockBuffer;
   source.connect(unlockAudioCtx.destination);
@@ -1170,6 +1286,40 @@ window.addEventListener('resize', updateScrollProgress);
 
 // ---------- CONFETTI BUTTON ----------
 document.getElementById('confettiBtn').addEventListener('click', () => launchConfetti());
+
+// ---------- PHOTO LIGHTBOX ----------
+const lightboxEl = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCounter = document.getElementById('lightboxCounter');
+const photoImgs = Array.from(document.querySelectorAll('.photo-card img'));
+let lightboxIndex = 0;
+
+function openLightbox(i){
+  lightboxIndex = i;
+  lightboxImg.src = photoImgs[i].src;
+  lightboxCounter.textContent = `${i+1} / ${photoImgs.length}`;
+  lightboxEl.classList.add('open');
+}
+function closeLightbox(){
+  lightboxEl.classList.remove('open');
+}
+function showLightboxOffset(delta){
+  lightboxIndex = (lightboxIndex + delta + photoImgs.length) % photoImgs.length;
+  lightboxImg.src = photoImgs[lightboxIndex].src;
+  lightboxCounter.textContent = `${lightboxIndex+1} / ${photoImgs.length}`;
+}
+
+photoImgs.forEach((img, i) => img.addEventListener('click', () => openLightbox(i)));
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightboxPrev').addEventListener('click', () => showLightboxOffset(-1));
+document.getElementById('lightboxNext').addEventListener('click', () => showLightboxOffset(1));
+lightboxEl.addEventListener('click', (e) => { if(e.target === lightboxEl) closeLightbox(); });
+document.addEventListener('keydown', (e) => {
+  if(!lightboxEl.classList.contains('open')) return;
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowLeft') showLightboxOffset(-1);
+  if(e.key === 'ArrowRight') showLightboxOffset(1);
+});
 
 // ---------- MESSAGE CARDS (flip on click) ----------
 document.getElementById('messagesGrid').querySelectorAll('.msg-card').forEach(card => {
