@@ -558,6 +558,72 @@ button, input{font-family:inherit;}
   font-size:.88rem;
 }
 
+/* AUDIO PLAYER */
+.audio-section{
+  background:var(--bg-deep-2);
+  padding:70px 8vw 80px;
+  text-align:center;
+}
+.audio-section h2{
+  font-family:'Lalezar',sans-serif;
+  font-size:2rem;
+  color:var(--cream);
+  margin:0 0 30px;
+}
+.audio-player{
+  max-width:440px;
+  margin:0 auto;
+  background:var(--bg-deep);
+  border-radius:18px;
+  padding:22px 24px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  box-shadow:0 16px 32px rgba(0,0,0,.25);
+}
+.audio-play-btn{
+  flex:0 0 56px;
+  width:56px;height:56px;
+  border-radius:50%;
+  border:none;
+  background:var(--citrus);
+  color:var(--ink);
+  font-size:1.3rem;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .15s ease, background .2s ease;
+}
+.audio-play-btn:hover{background:#e0982e;transform:scale(1.05);}
+.audio-info{flex:1;text-align:right;}
+.audio-title{
+  color:var(--cream);
+  font-weight:700;
+  margin-bottom:8px;
+  font-size:.98rem;
+}
+.audio-progress-track{
+  width:100%;
+  height:6px;
+  background:rgba(255,255,255,.18);
+  border-radius:100px;
+  cursor:pointer;
+  overflow:hidden;
+}
+.audio-progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--berry),var(--citrus));
+}
+.audio-time{
+  margin-top:6px;
+  font-size:.78rem;
+  color:#cfe0d3;
+  direction:ltr;
+  text-align:left;
+}
+
 /* MESSAGE */
 .message-section{
   background:var(--bg-deep-2);
@@ -750,6 +816,23 @@ footer{
     </div>
     <div id="cakeHint">دوسي على كل شمعة تطفيها</div>
     <div id="cakeMsg">اتمنيتي؟ 🎉 يارب أمنيتك تتحقق يا اسراء</div>
+  </section>
+
+  <!--
+    عشان تشغلي أي MP3: حطي ملف الصوت في نفس فولدر index.html وسميه song.mp3
+    (أو غيري اسم الملف في src بتاع audio تحت).
+  -->
+  <section class="audio-section">
+    <h2>استمعي لحاجة حلوة 🎵</h2>
+    <div class="audio-player">
+      <button class="audio-play-btn" id="audioPlayBtn">▶</button>
+      <div class="audio-info">
+        <div class="audio-title">مفاجأة صوتية</div>
+        <div class="audio-progress-track" id="audioProgressTrack"><div class="audio-progress-fill" id="audioProgressFill"></div></div>
+        <div class="audio-time"><span id="audioCurrent">0:00</span> / <span id="audioDuration">0:00</span></div>
+      </div>
+    </div>
+    <audio id="audioPlayerSrc" src="song.mp3" preload="metadata"></audio>
   </section>
 
   <section class="messages-section">
@@ -1319,6 +1402,45 @@ document.addEventListener('keydown', (e) => {
   if(e.key === 'Escape') closeLightbox();
   if(e.key === 'ArrowLeft') showLightboxOffset(-1);
   if(e.key === 'ArrowRight') showLightboxOffset(1);
+});
+
+// ---------- AUDIO PLAYER (MP3 من عندك) ----------
+const audioEl = document.getElementById('audioPlayerSrc');
+const audioPlayBtn = document.getElementById('audioPlayBtn');
+const audioProgressFill = document.getElementById('audioProgressFill');
+const audioProgressTrack = document.getElementById('audioProgressTrack');
+const audioCurrentEl = document.getElementById('audioCurrent');
+const audioDurationEl = document.getElementById('audioDuration');
+
+function formatTime(sec){
+  if(!isFinite(sec)) return '0:00';
+  const m = Math.floor(sec/60);
+  const s = Math.floor(sec%60).toString().padStart(2,'0');
+  return `${m}:${s}`;
+}
+
+audioPlayBtn.addEventListener('click', () => {
+  if(audioEl.paused){
+    audioEl.play().catch(()=>{});
+  } else {
+    audioEl.pause();
+  }
+});
+audioEl.addEventListener('play', () => { audioPlayBtn.textContent = '❚❚'; });
+audioEl.addEventListener('pause', () => { audioPlayBtn.textContent = '▶'; });
+audioEl.addEventListener('loadedmetadata', () => {
+  audioDurationEl.textContent = formatTime(audioEl.duration);
+});
+audioEl.addEventListener('timeupdate', () => {
+  audioCurrentEl.textContent = formatTime(audioEl.currentTime);
+  const pct = audioEl.duration ? (audioEl.currentTime/audioEl.duration)*100 : 0;
+  audioProgressFill.style.width = pct + '%';
+});
+audioEl.addEventListener('ended', () => { audioPlayBtn.textContent = '▶'; });
+audioProgressTrack.addEventListener('click', (e) => {
+  const rect = audioProgressTrack.getBoundingClientRect();
+  const ratio = (e.clientX - rect.left) / rect.width;
+  if(audioEl.duration){ audioEl.currentTime = ratio * audioEl.duration; }
 });
 
 // ---------- MESSAGE CARDS (flip on click) ----------
