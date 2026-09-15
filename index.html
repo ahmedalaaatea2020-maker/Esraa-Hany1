@@ -222,6 +222,38 @@ button, input{font-family:inherit;}
 .music-btn:hover{transform:scale(1.08);}
 .music-btn:active{transform:scale(.94);}
 
+.butterfly-field{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:55;
+  overflow:hidden;
+}
+.butterfly{
+  position:absolute;
+  width:34px;
+  height:34px;
+  animation:flyPath linear infinite;
+  opacity:.85;
+}
+.butterfly svg{
+  width:100%;
+  height:100%;
+  animation:flap .35s ease-in-out infinite alternate;
+  transform-origin:50% 50%;
+}
+@keyframes flap{
+  from{transform:scaleX(1);}
+  to{transform:scaleX(.55);}
+}
+@keyframes flyPath{
+  0%{transform:translate(0,0) rotate(0deg);}
+  25%{transform:translate(-28vw, -14vh) rotate(-8deg);}
+  50%{transform:translate(-55vw, 6vh) rotate(6deg);}
+  75%{transform:translate(-80vw, -10vh) rotate(-6deg);}
+  100%{transform:translate(-110vw, 4vh) rotate(0deg);}
+}
+
 /* ---------- MAIN SITE ---------- */
 #site{display:none;}
 #site.show{display:block;}
@@ -701,6 +733,7 @@ footer{
   .orange,.leaf1,.avocado,.cherry,.flame,.smoke,.lightbox img,
   .mascot-wrap,.mascot .eye{animation:none !important;opacity:1 !important;transform:none;}
   .bg-particle{display:none;}
+  .butterfly-field{display:none;}
   #unlockBtn{transition:none;}
   .confetti-piece{display:none;}
   .success-wave{display:none;}
@@ -756,6 +789,18 @@ footer{
 
   <button class="confetti-btn" id="confettiBtn" aria-label="نزّل كونفيتي">🎉</button>
   <button class="music-btn" id="musicBtn" aria-label="شغّل أغنية عيد الميلاد">🎵</button>
+
+  <div class="butterfly-field" aria-hidden="true">
+    <div class="butterfly" style="top:12%;right:5%;animation-duration:22s;animation-delay:0s;">
+      <svg viewBox="0 0 40 40"><path d="M20 20 C10 4 -2 8 4 20 C-2 32 10 36 20 20Z" fill="#E85D75"/><path d="M20 20 C30 4 42 8 36 20 C42 32 30 36 20 20Z" fill="#F2A93B"/></svg>
+    </div>
+    <div class="butterfly" style="top:35%;right:0%;animation-duration:27s;animation-delay:6s;width:26px;height:26px;">
+      <svg viewBox="0 0 40 40"><path d="M20 20 C10 4 -2 8 4 20 C-2 32 10 36 20 20Z" fill="#8FB56B"/><path d="M20 20 C30 4 42 8 36 20 C42 32 30 36 20 20Z" fill="#E85D75"/></svg>
+    </div>
+    <div class="butterfly" style="top:60%;right:8%;animation-duration:19s;animation-delay:11s;width:30px;height:30px;">
+      <svg viewBox="0 0 40 40"><path d="M20 20 C10 4 -2 8 4 20 C-2 32 10 36 20 20Z" fill="#F2A93B"/><path d="M20 20 C30 4 42 8 36 20 C42 32 30 36 20 20Z" fill="#8FB56B"/></svg>
+    </div>
+  </div>
 
 
 
@@ -849,6 +894,16 @@ footer{
         <div class="msg-card-inner">
           <div class="msg-front">
             <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">Hany Mortady</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">كل سنه وانتي طيبه وبخير وصحة وعافية<br>والى طاعة الله اقرب وعقبال مليون سنه بسعاده وعمر مديد ورزق وفير والعام القادم ان شاءالله تكوني مع ابن الحلال ربنا يرزقك بزوج صالح يسعدك وتسعديه اللهم آمين يارب العالمين</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
             <div class="msg-name">احمد</div>
             <div class="msg-hint">دوسي لتقرأي 💌</div>
           </div>
@@ -909,26 +964,6 @@ footer{
         <div class="msg-card-inner">
           <div class="msg-front">
             <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
-            <div class="msg-name">الأستاذ</div>
-            <div class="msg-hint">دوسي لتقرأي 💌</div>
-          </div>
-          <div class="msg-back">بالتوفيق الدائم ان شاءالله</div>
-        </div>
-      </div>
-      <div class="msg-card">
-        <div class="msg-card-inner">
-          <div class="msg-front">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
-            <div class="msg-name">الأستاذ</div>
-            <div class="msg-hint">دوسي لتقرأي 💌</div>
-          </div>
-          <div class="msg-back">دكتورة ممتازة</div>
-        </div>
-      </div>
-      <div class="msg-card">
-        <div class="msg-card-inner">
-          <div class="msg-front">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
             <div class="msg-name">احمد سيد</div>
             <div class="msg-hint">دوسي لتقرأي 💌</div>
           </div>
@@ -953,6 +988,16 @@ footer{
             <div class="msg-hint">دوسي لتقرأي 💌</div>
           </div>
           <div class="msg-back">كل سنه وانتي طيبه وبخير يارب والعمر كلو ليكي يادكتور 🥰🎂</div>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-card-inner">
+          <div class="msg-front">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+            <div class="msg-name">Hany Mortady</div>
+            <div class="msg-hint">دوسي لتقرأي 💌</div>
+          </div>
+          <div class="msg-back">كل سنه وانتي طيبه وبخير وصحة وعافية وعافيه<br>والى طاعة الله اقرب وعقبال مليون سنه بسعاده وعمر مديد ورزق وفير والعام القادم ان شاءالله الله تكوني مع ابن الحلال ربنا يرزقك بزوج صالح يسعدك وتسعديه اللهم آمين يارب العالمين</div>
         </div>
       </div>
     </div>
@@ -1004,6 +1049,8 @@ footer{
       <div class="photo-card"><div class="tape"></div><img src="photo33.jpg" alt="صورة معاها"></div>
       <div class="photo-card"><div class="tape"></div><img src="photo34.jpg" alt="صورة معاها"></div>
       <div class="photo-card"><div class="tape"></div><img src="photo35.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo36.jpg" alt="صورة معاها"></div>
+      <div class="photo-card"><div class="tape"></div><img src="photo37.jpg" alt="صورة معاها"></div>
     </div>
   </section>
 
@@ -1018,7 +1065,7 @@ footer{
   <section class="message-section">
     <div class="message-card">
       <svg class="quote" viewBox="0 0 24 24" fill="#F2A93B"><path d="M7 7c-2 0-4 2-4 5s2 5 4 5 3-1 3-3-1-3-2-3c0-2 1-3 2-3V5c-2 0-3 1-3 2zm10 0c-2 0-4 2-4 5s2 5 4 5 3-1 3-3-1-3-2-3c0-2 1-3 2-3V5c-2 0-3 1-3 2z"/></svg>
-      <p>يا رب السنة الجديدة تجيبلك كل اللي في بالك، صحة وسعادة، ونجاح في شغلك اللي بتحبيه. وكل سنة وصحبتنا زي ما هي، من غير ما تقل يوم عن كده. وعقبال ما تحرمينا من الأكل الحلو لسنين جاية 😄</p>
+      <p>يا رب السنة الجديدة تجيبلك كل اللي في بالك، صحة وسعادة، ونجاح في شغلك اللي بتحبيه. وكل سنة وصحبتنا زي ما هي، من غير ما تقل يوم عن كده.</p>
       <div class="sign">من صحابك اللي مبسوطين بيكي</div>
     </div>
   </section>
